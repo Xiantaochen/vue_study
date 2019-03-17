@@ -8,9 +8,13 @@
 // import Vue from 'vue'
 
 import Vue from "vue"
+import VueRouter from "vue-router"
+Vue.use(VueRouter)
+import router from './router.js'
 import { Header } from 'mint-ui'
 import 'mint-ui/lib/style.css'
 import './lib/mui/css/mui.min.css'
+import "./lib/mui/css/icons-extra.css"
 import app from "./App.vue"
 
 Vue.component(Header.name,Header)
@@ -19,9 +23,9 @@ var vm = new Vue({
     el:"#app",
     // components:{
     //     login
-
     // }
-    render: c=>c(app)
+    render: c=>c(app),
+    router
     
 })
 // console.log('ok')
