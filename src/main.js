@@ -10,6 +10,11 @@
 import Vue from "vue"
 import VueRouter from "vue-router"
 Vue.use(VueRouter)
+
+
+import VueResource from "vue-resource"
+Vue.use(VueResource)
+
 import router from './router.js'
 import { Header, Swipe, SwipeItem  } from 'mint-ui'
 import 'mint-ui/lib/style.css'
