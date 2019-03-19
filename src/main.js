@@ -14,6 +14,7 @@ Vue.use(VueRouter)
 
 import VueResource from "vue-resource"
 Vue.use(VueResource)
+Vue.http.options.root="http://vue.studyit.io"
 
 import router from './router.js'
 import { Header, Swipe, SwipeItem  } from 'mint-ui'
@@ -25,6 +26,13 @@ import app from "./App.vue"
 Vue.component(Header.name,Header)
 Vue.component(Swipe.name, Swipe)
 Vue.component(SwipeItem.name, SwipeItem)
+
+import moment from "moment"
+
+
+Vue.filter('dateFormat',function(datastr,pattern = "YYYY-MM-DD HH:MM:SS"){
+    return moment(datastr).format(pattern)
+})
 
 var vm = new Vue({
     el:"#app",
