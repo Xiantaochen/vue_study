@@ -32,6 +32,8 @@ import app from "./App.vue"
 import MintUI from "mint-ui"
 Vue.use(MintUI)
 import 'mint-ui/lib/style.css'
+import VuePreview from 'vue2-preview'
+Vue.use(VuePreview)
 
 import moment from "moment"
 

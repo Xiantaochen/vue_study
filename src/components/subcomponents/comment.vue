@@ -3,8 +3,8 @@
   <div class="cmt-container">
       <h3>发布评论</h3>
       <hr>
-      <textarea placeholder="最多100多字"></textarea>
-      <mt-button type = "primary" size="large">发布评论</mt-button>
+      <textarea placeholder="最多100多字" v-model="msg"></textarea>
+      <mt-button type = "primary" size="large" @click="postComment">发布评论</mt-button>
       <dic class="cmt-list">
         <div class="cmt-item" v-for="(item , i) in comments" :key="item.add_time">
           <div class="cmt-title"></div>
@@ -24,7 +24,8 @@ export default{
   data(){
     return {
       pageIndex :1,
-      comments:[]
+      comments:[],
+      msg:'',
     }
   },
   created(){
@@ -45,6 +46,24 @@ export default{
     getMore(){
       this.pageIndex ++;
       this.getComments()
+    },
+    postComment(){
+      if (this.msg.tim().length ===0){
+        return Toast('no comment');
+      }
+
+
+        this.$http.post('api/postcomment/'+this.$route.params.id,{content:this.msg.trim()}
+        .then(function(result) {
+          if  (result.body.message.status ===0){
+            var cmt = {user_name:"匿名用户",
+            add_time:Date.now(),
+            content:this.msg.trim()};
+            this.comments.unshift(cmt);
+            this.msg =""
+
+          }
+        }))
     }
   },
   props:['id']

@@ -1,13 +1,8 @@
 <!--  -->
 <template>
   <div>
-  <mt-swipe :auto="4000">
-  <mt-swipe-item v-for="item in lunbotuList" :key="item.img" >
-    <img :src="item.img" alt="">
-  </mt-swipe-item>
- 
-  </mt-swipe>
 
+		<swipe :lunbotuList="lunbotuList" :isfull="true"></swipe>
   <!-- 九宫格 -->
   <ul class="mui-table-view mui-grid-view mui-grid-9">
 		            <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><router-link to="/home/NewsList">
@@ -16,10 +11,10 @@
 		            <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><router-link to="/home/photolist">
 		                    <span class="mui-icon mui-icon-email"><span class="mui-badge">5</span></span>
 		                    <div class="mui-media-body">图片分享</div></router-link></li>
-		            <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><router-link to="#">
+		            <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><router-link to="/home/photolist/godslist">
 		                    <span class="mui-icon mui-icon-chatbubble"></span>
 		                    <div class="mui-media-body">商品购买</div></router-link></li>
-		            <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><router-link to="#">
+		            <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><router-link to="/home/photolist">
 		                    <span class="mui-icon mui-icon-location"></span>
 		                    <div class="mui-media-body">留言反馈</div></router-link></li>
 		            <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><router-link to="#">
@@ -34,6 +29,7 @@
 
 <script>
 import {Toast} from "mint-ui"
+import swipe from "../subcomponents/swiper.vue"
 export default{
 	data(){
 		return {
@@ -58,6 +54,9 @@ export default{
 			})
 
 		}
+	},
+	components:{
+		swipe
 	}
 }
 

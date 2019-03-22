@@ -8,12 +8,14 @@
       </p>
       <hr>
 
-    <img class="preview-img" v-for="(item, index) in list" 
-    :src="item.src" height="100" @click="$preview.open(index, list)" :key="item.src">
-      <civ class="content" v-html="photoinfo.content" :key="item.src">
+        <div class="thumbs">
+                <img class="preview-img" v-for="(item, index) in list" 
+            :src="item.src" height="100" @click="$preview.open(index, list)" :key="item.src">
+        </div>
+      <div class="content" v-html="photoinfo.content" :key="item.src">
         <cmt-box :id="id"></cmt-box>
 
-      </civ>
+      </div>
   </div>
 </template>
 
@@ -79,6 +81,11 @@ export default{
         font-size: 13px;
         line-height: 30px;
 
+    }
+    .thumbs{
+        img{
+            margin: 10px;
+        }
     }
 }
 </style>

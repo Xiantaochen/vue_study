@@ -1,26 +1,61 @@
 <!--  -->
 <template>
   <div class="goods-list">
-      <div class="goods-item">
-               <img src="" alt="">
-      <h1 class="title"></h1>
+      <div class="goods-item" v-for="item in goodslist" :key="item.id" >
+               <img :src="item.img_url" alt="" tag="div">
+      <h1 class="title">{{item.title}}</h1>
       <div class="info">
           <p class="price">
-              <span class="now">299</span>
-              <span class="old">399</span>
+              <span class="now">￥{{item.sell_price}}</span>
+              <span class="old">￥{{item.market_price}}</span>
           </p>
           <p class="sell">
-              <span></span>
-              <span></span>
+              <span>热卖中</span>
+              <span>剩{{item.stock_quantity}}件</span>
           </p>
           </div>
       </div>
+      <mt-button type="danger" size="large" @click="getMore"></mt-button>
  
   </div>
 </template>
 
 <script>
+export default {
+    data(){
+        return{
+            pageindex :1,
+            goodslist:[]
+        }
+    },
+    created(){
+        this.getGoodsList()
+    },
+    methods:{
+        getGoodsList(){
+            this.$http.get('api/getgoods?pageindex='+ this.pageindex).then(result=>{
+                if (result.body.status ===0){
+                    // this.goodslist = result.body.message;
+                    this.goodslist = this.goodslist.concat(result.body.message);
+                }else{
 
+                }
+            })
+        },
+        getMore(){
+            this.pageindex ++;
+            this.getGoodsList()
+        },
+        getDetail(id){
+            console.log(this);
+            // this.$router.push("/home/goodsinf0/" + id);
+
+            this.$router.push({name:"goodsinfo",params:{ id }});
+
+        }
+
+    }
+}
 </script>
 <style lang='scss' scoped>
 .goods-list{
@@ -34,6 +69,10 @@
         box-shadow: 0 0 8px #ccc;
         width: 49%;
         margin: 4px 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        min-height: 293px;
         img{
             width: 100%;
         }

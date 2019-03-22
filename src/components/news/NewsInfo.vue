@@ -8,6 +8,9 @@
       </p>
       <hr>
       <div class="content" v-html="newsinfo.content"></div>
+    <div>
+        <comment-box :id = "this.id"></comment-box>
+    </div>
   </div>
 </template>
 
@@ -37,6 +40,9 @@ export default{
                 }
             })
         }
+    },
+    components:{
+        'comment-box':comment
     }
 }
 
