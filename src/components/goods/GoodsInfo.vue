@@ -92,7 +92,13 @@ export default {
           this.$router.push({name:"goodscomment",params:{id}})
       },
       addToShopCar(){
-          this.ballFlag = !this.ballFlag
+          this.ballFlag = !this.ballFlag;
+          var goodsinfo = {id:this.id,
+          count:thi.SelectCount,
+          price:this.goodsinfo.sell_price,
+          selected:true};
+           this.$store.commit("addToCar",goodsinfo)      
+
       },
       beforeEvent(el){
           el.style.trantransform ="translater(0,0)";
@@ -128,7 +134,7 @@ export default {
       numbox
   }
 
-}
+} 
 </script>
 <style lang='scss' scoped>
 .goodsinfo-container{
